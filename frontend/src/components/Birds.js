@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
-// import Bird from './Bird'
+import ShowBird from './ShowBird'
 
 let baseURL = 'http://localhost:3003/birds'
-let stupid = ['ric', 'john']
 export default class Birds extends Component {
   constructor(props) {
     super(props)
@@ -13,33 +12,49 @@ export default class Birds extends Component {
       image: '',
       wikiURL: ''
     }
-    this.getBirds = this.getBirds.bind(this)
+    this.getBirds = this.getData.bind(this)
+    this.getBird = this.getBird.bind(this)
   }
   componentDidMount(){
-    this.getBirds()
+    this.getData()
   }
-  async getBirds(){
-      console.log('inside getbirds');
+  async getData(){
+      // console.log('inside getbirds');
     let response = await fetch(`${baseURL}`)
-    console.log(response);
+    // console.log(response);
     let data = await response.json()
-    console.log(data);
+    // console.log(data);
     this.setState({ birds: data })
   }catch(e) {
     console.error(e)
   }
 
+  getBird(bird) {
+    console.log(`Bird: `, bird);
+    this.setState({bird: bird})
+  }
+
 
   render() {
+    console.log(`this is it`, this.state.bird)
     return(
       <div className="container">
         <h4 className="">Birds</h4>
         {
             this.state.birds.map(bird => {
                 return(
-                    <h5>{bird.name}</h5>
+                    <div key={bird._id}>
+                    <h5 onClick={() => {
+                      this.getBird(bird)
+                    }}>{bird.name} <span>X</span></h5>
+                    </div>
                 )
+
             })
+        }
+        {this.state.bird
+          ? <ShowBird bird={this.state.bird}/>
+          : null
         }
 
       </div>
