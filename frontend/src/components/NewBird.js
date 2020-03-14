@@ -41,13 +41,19 @@ export default class NewBird extends Component {
     render() {
         return(
             <form onSubmit={this.handleSubmit}>
-                <label htmlFor="name"></label>
-                <input type="text" id="name" name="name" value={this.state.name} placeholder="Add a bird name" onChange={this.handleChange} />
+                <div className="form-group">
+                  <label htmlFor="name"></label>
+                  <input className="form-control" type="text" id="name" name="name" value={this.state.name} placeholder="Add a bird name" onChange={this.handleChange} />
+                </div>
+                <div className="form-group">
                 <label htmlFor="image"></label>
-                <input type="text" id="image" name="image" value={this.state.image} placeholder="Add a bird image URL" onChange={this.handleChange} />
+                <input className="form-control" type="text" id="image" name="image" value={this.state.image} placeholder="Add a bird image URL" onChange={this.handleChange} />
+                </div>
+                <div className="form-group">
                 <label htmlFor="wikiLink"></label>
-                <input type="text" id="wikiLink" name="wikiLink" value={this.state.wikiLink} placeholder="Add the wikiLink" onChange={this.handleChange} />
-                <input type="submit" value="Add Bird"/>
+                <input className="form-control" type="text" id="wikiLink" name="wikiLink" value={this.state.wikiLink} placeholder="Add the wikiLink" onChange={this.handleChange} />
+                </div>
+                <input className="btn btn-primary" type="submit" value="Add Bird"/>
             </form>
         )
     }
