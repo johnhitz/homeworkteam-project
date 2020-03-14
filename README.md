@@ -21,6 +21,20 @@
     * /model
     * /public (?)
 
+
+### Database Schemad
+
+```
+const birdsSchema = mongoose.Schema({
+  name: { type: String, required: true },
+  image: String,
+  description: String,
+  Class: String,
+  Order: String,
+  Family: String,
+  wikiURL: String
+})
+```
 ### React components
 
 #### App.js
