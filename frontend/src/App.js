@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-// import ./components/birds.js
+import Birds from './components/Birds.js'
 // import ./components/NewBirds.js
 // import ./components/UpdateBird.js
 // import ./components/bird.js
 
-let baseURL = 'http://localhost:3003/birds'
+
 
 export default class App extends Component {
     constructor(props) {
@@ -20,7 +20,7 @@ export default class App extends Component {
         return(
             <div className='container'>
                 <h1>Welcome to Bird Watcher</h1>
-
+                <Birds />
             </div>
         )
     }
