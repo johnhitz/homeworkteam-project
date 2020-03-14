@@ -1,26 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+// import ./components/birds.js
+// import ./components/NewBirds.js
+// import ./components/UpdateBird.js
+// import ./components/bird.js
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+let baseURL = 'http://localhost:3003/birds'
+
+export default class App extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            name: '',
+            image: '',
+            wikiURL: ''
+        }
+    }
+
+    render() {
+        return(
+            <div className='container'>
+                <h1>Welcome to Bird Watcher</h1>
+
+            </div>
+        )
+    }
 }
-
-export default App;
