@@ -17,6 +17,7 @@ export default class Birds extends Component {
     this.getBird = this.getBird.bind(this)
     this.handleAddBird = this.handleAddBird.bind(this)
     this.deleteBird = this.deleteBird.bind(this)
+    this.handleEditBird = this.handleEditBird.bind(this)
   }
   componentDidMount(){
     this.getData()
@@ -59,10 +60,15 @@ export default class Birds extends Component {
       }
   }
 
+  handleEditBird(bird) {
+
+  }
+
+
   render() {
     console.log(`this is it`, this.state.bird)
     return(
-      <div className="container">
+      <div>
         <h4 className="">Birds</h4>
         <NewBird handleAddBird={this.handleAddBird} baseURL={baseURL}/>
         {
