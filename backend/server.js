@@ -1,10 +1,10 @@
 const express = require('express')
 const mongoose = require('mongoose')
+const cors = require('cors')
 app = express()
 
 const mongoURL = "mongodb://localhost:27017/bookmarks"
 PORT = 3003
-
 
 /**************************************************
 Middleware
@@ -21,7 +21,8 @@ const corsOptions = {
   }
 }
 
-// app.use(cors(corsOptions)) // all routes are now exposed, sometimes you just want to limit access (ie OMDB - it's ok for anyone to see the movies, but you don't want just anyone updating the movies)
+ app.use(cors(corsOptions))
+
 /**************************************************
 Database Conection
 **************************************************/

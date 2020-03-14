@@ -7,14 +7,7 @@ import Birds from './components/Birds.js'
 
 
 export default class App extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            name: '',
-            image: '',
-            wikiURL: ''
-        }
-    }
+
 
     render() {
         return(
