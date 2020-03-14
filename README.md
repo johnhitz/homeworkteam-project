@@ -38,8 +38,10 @@ default export class App extends React.Component {
 
 
 #### Bird.js
+* Shows details for a single bird.
 
 #### Birds.js
+* Shows all birds.
 
 ```
 class Birds extends React.Component {
@@ -50,9 +52,9 @@ class Birds extends React.Component {
         }        
     }
 }
-
 ```
 #### NewBird.js
+* Holds form and form functionality to add a new bird
 
 ```
 class NewBird extends React.Component {
