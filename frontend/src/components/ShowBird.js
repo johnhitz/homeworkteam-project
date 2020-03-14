@@ -1,24 +1,14 @@
 import React, { Component } from 'react'
-import Bird from './Bird'
 
-export default class Birds extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      birds: [],
-      name: '',
-      image: '',
-      wikiURL: ''
-    }
-  }
+
+export default class ShowBird extends Component {
   render() {
     return(
       <div className="container">
         <h4 className="">Birds Showbird w/ detail</h4>
-        name
-        image
-        wiki
-        url
+        <h5>{this.props.bird.name}</h5>
+        <img src={this.props.bird.image} alt={this.props.bird.name}/>
+
       </div>
     )
   }
