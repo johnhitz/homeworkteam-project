@@ -11,3 +11,14 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.bird-card {
+  padding: 1em;
+  margin-top: 1em;
+}
+
+.show {
+  padding: 1em;
+  margin-top: 1em;
+  margin-left: 1em;
+}
