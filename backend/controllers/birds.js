@@ -8,7 +8,8 @@ const birdSeed = [
         order: 'Passeriformes',
         family: 'Fringillidae',
         genus: 'Carduelis',
-        wikiURL: 'https://en.wikipedia.org/wiki/American_goldfinch'
+        wikiURL: 'https://en.wikipedia.org/wiki/American_goldfinch',
+        likes: 0
     },
     {
         name: 'Mourning Dove',
@@ -17,7 +18,8 @@ const birdSeed = [
         order: 'Columbiformes',
         family: 'Columbidae',
         genus: 'Zenaida',
-        wikiURL: 'https://en.wikipedia.org/wiki/Mourning_dove'
+        wikiURL: 'https://en.wikipedia.org/wiki/Mourning_dove',
+        likes: 0
     },
     {
         name: 'Pine Grosbeak',
@@ -26,7 +28,8 @@ const birdSeed = [
         order: 'Passeriformes',
         family: 'Fringillidae',
         genus: 'Pinicola',
-        wikiURL: 'https://en.wikipedia.org/wiki/Pine_grosbeak'
+        wikiURL: 'https://en.wikipedia.org/wiki/Pine_grosbeak',
+        likes: 0
     },
     {
         name: 'Ruby Throated Hummingbird',
@@ -35,7 +38,8 @@ const birdSeed = [
         order: 'Apodiformes',
         family: 'Trochilidae',
         genus: 'Archilochus',
-        wikiURL: 'https://en.wikipedia.org/wiki/Ruby-throated_hummingbird'
+        wikiURL: 'https://en.wikipedia.org/wiki/Ruby-throated_hummingbird',
+        likes: 0
     }
 ]
 
@@ -100,6 +104,8 @@ birds.delete('/:id', (req, res) => {
 })
 
 birds.put('/:id', (req, res) => {
+  console.log(`Req.body: `,req.body);
+  console.log("Hit it!");
   Birds.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, updatedBird) => {
     if(err) {
       res.status(400).json({
