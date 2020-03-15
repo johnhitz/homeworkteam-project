@@ -16,14 +16,15 @@ export default class Birds extends Component {
       family: '',
       genus: '',
       wikiURL: '',
-      likes: 0
+      likes: 0,
+      show: true
     }
     this.getBirds = this.getData.bind(this)
     this.getBird = this.getBird.bind(this)
     this.handleAddBird = this.handleAddBird.bind(this)
     this.deleteBird = this.deleteBird.bind(this)
     this.handleEditBird = this.handleEditBird.bind(this)
-    this.handleHideBirds = this.handleHideBirds.bind(this)
+    this.handleShowBird = this.handleShowBird.bind(this)
     this.handleLikesBird = this.handleLikesBird.bind(this)
   }
   componentDidMount(){
@@ -71,7 +72,11 @@ export default class Birds extends Component {
     this.setState = {
     }
   }
-  handleHideBirds() {
+  handleShowBird() {
+    console.log('show birds')
+    this.setState = {
+      show: !this.state.show
+    }
   }
 
   async handleLikesBird(bird, i) {
@@ -87,7 +92,7 @@ export default class Birds extends Component {
           'Content-Type': 'application/json'
         }
       })
-      
+
       this.setState((previousState) => {
         previousState.birds[i].likes++
         return {birds: previousState.birds}
@@ -108,27 +113,38 @@ export default class Birds extends Component {
         {
             this.state.birds.map((bird, i) => {
                 return(
-                    <div key={bird._id}>
-                      <h5 onClick={() => {
-                        this.getBird(bird) }}>
-                          {bird.name} {bird.likes}
-                      </h5>
-                      <button type="button" className="btn-btn-primary" onClick={() => {
-                        this.handleLikesBird(bird, i)
-                      }}>Like</button>
-                      <button
-                        onClick={() => { this.deleteBird(bird._id)
-
-                      }}>
-                          X
-                      </button>
+                    <div className="col-sm-6" key={bird._id}>
+                      <div className="card bird-card">
+                        <h5>{bird.name}</h5>
+                        <h6>Likes: {bird.likes}</h6>
+                        <div className="btn-group col-sm-4" role="group">
+                          <button
+                            type="button"
+                            className="btn
+                            btn-success"
+                            onClick={() => {
+                              this.getBird(bird) }}
+                            >Show</button>
+                          <button type="button" className="btn btn-primary" onClick={() => {
+                          this.handleLikesBird(bird, i)
+                        }}>Like</button>
+                        <button className="btn btn-secondary"
+                          onClick={() => { this.deleteBird(bird._id)
+                        }}>
+                            X
+                        </button>
+                        </div>
+                      </div>
                     </div>
                 )
 
             })
         }
-        {this.state.bird
-          ? <ShowBird bird={this.state.bird}/>
+        {this.state.bird && this.state.show
+          ? <ShowBird
+            bird={this.state.bird }
+            showBird={this.handleShowBird}
+            />
           : null
         }
 
