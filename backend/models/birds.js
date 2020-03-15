@@ -7,7 +7,8 @@ const birdsSchema = mongoose.Schema({
   order: String,
   family: String,
   genus: String,
-  wikiURL: String
+  wikiURL: String,
+  likes: Number
 })
 
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-export default class NewBird extends Component {
+export default class EditBird extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -27,12 +27,11 @@ export default class NewBird extends Component {
                 }
             })
             let data = await response.json()
-            this.props.handleAddBird(data)
+            this.props.handleUpdateBird(data)
             this.setState({
                 name: '',
                 image: '',
-                wikiLink: '',
-                likes: 0
+                wikiLink: ''
             })
         } catch(error) {
             console.log({'Error': error});
@@ -44,15 +43,18 @@ export default class NewBird extends Component {
             <form onSubmit={this.handleSubmit}>
                 <div className="form-group">
                   <label htmlFor="name"></label>
-                  <input className="form-control" type="text" id="name" name="name" value={this.state.name} placeholder="Add a bird name" onChange={this.handleChange} />
+                  <input className="form-control" type="text" id="name" name="name" value={this.state.name}
+                  onChange={this.handleChange} />
                 </div>
                 <div className="form-group">
                 <label htmlFor="image"></label>
-                <input className="form-control" type="text" id="image" name="image" value={this.state.image} placeholder="Add a bird image URL" onChange={this.handleChange} />
+                <input className="form-control" type="text" id="image" name="image" value={this.state.image}
+                onChange={this.handleChange} />
                 </div>
                 <div className="form-group">
                 <label htmlFor="wikiLink"></label>
-                <input className="form-control" type="text" id="wikiLink" name="wikiLink" value={this.state.wikiLink} placeholder="Add the wikiLink" onChange={this.handleChange} />
+                <input className="form-control" type="text" id="wikiLink" name="wikiLink" value={this.state.wikiLink}
+                onChange={this.handleChange} />
                 </div>
                 <input className="btn btn-primary" type="submit" value="Add Bird"/>
             </form>

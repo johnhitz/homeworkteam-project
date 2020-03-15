@@ -11,13 +11,20 @@ export default class Birds extends Component {
       bird: null,
       name: '',
       image: '',
-      wikiURL: ''
+      description: '',
+      order: '',
+      family: '',
+      genus: '',
+      wikiURL: '',
+      likes: 0
     }
     this.getBirds = this.getData.bind(this)
     this.getBird = this.getBird.bind(this)
     this.handleAddBird = this.handleAddBird.bind(this)
     this.deleteBird = this.deleteBird.bind(this)
     this.handleEditBird = this.handleEditBird.bind(this)
+    this.handleHideBirds = this.handleHideBirds.bind(this)
+    this.handleLikesBird = this.handleLikesBird.bind(this)
   }
   componentDidMount(){
     this.getData()
@@ -61,27 +68,60 @@ export default class Birds extends Component {
   }
 
   handleEditBird(bird) {
+    this.setState = {
+    }
+  }
+  handleHideBirds() {
+  }
 
+  async handleLikesBird(bird, i) {
+    console.log("WTF?");
+    const newLikes = bird.likes + 1
+    try {
+      let response = await fetch(`${baseURL}/${bird._id}` , {
+        method: 'PUT',
+        body: JSON.stringify({
+          likes: newLikes
+        }),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      
+      this.setState((previousState) => {
+        previousState.birds[i].likes++
+        return {birds: previousState.birds}
+      })
+    }catch(error) {
+      console.log({'Error': error})
+    }
   }
 
 
   render() {
-    console.log(`this is it`, this.state.bird)
+    console.log(this.state);
     return(
       <div>
         <h4 className="">Birds</h4>
-        <NewBird handleAddBird={this.handleAddBird} baseURL={baseURL}/>
+        <NewBird handleAddBird={this.handleAddBird}
+         baseURL={baseURL}/>
         {
-            this.state.birds.map(bird => {
+            this.state.birds.map((bird, i) => {
                 return(
                     <div key={bird._id}>
-                    <h5 onClick={() => {
-                      this.getBird(bird) }}>
-                        {bird.name}
-                        <span onClick={() => { this.deleteBird(bird._id)}}>
-                            X
-                        </span>
-                    </h5>
+                      <h5 onClick={() => {
+                        this.getBird(bird) }}>
+                          {bird.name} {bird.likes}
+                      </h5>
+                      <button type="button" className="btn-btn-primary" onClick={() => {
+                        this.handleLikesBird(bird, i)
+                      }}>Like</button>
+                      <button
+                        onClick={() => { this.deleteBird(bird._id)
+
+                      }}>
+                          X
+                      </button>
                     </div>
                 )
 
