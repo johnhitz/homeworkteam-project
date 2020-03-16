@@ -13,7 +13,9 @@ export default class ShowBird extends Component {
           <h5>Genus: {this.props.bird.genus}</h5>
           <p className="card-text">{this.props.bird.description}</p>
         </div>
-        <button onClick={this.props.showBird}>Close</button>
+        <button onClick={() => {
+          this.props.HideBird(this.props.show)
+        }}>Close</button>
       </div>
     )
   }

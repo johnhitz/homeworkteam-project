@@ -24,8 +24,9 @@ export default class Birds extends Component {
     this.handleAddBird = this.handleAddBird.bind(this)
     this.deleteBird = this.deleteBird.bind(this)
     this.handleEditBird = this.handleEditBird.bind(this)
-    this.handleShowBird = this.handleShowBird.bind(this)
+    // this.handleShowBird = this.handleShowBird.bind(this)
     this.handleLikesBird = this.handleLikesBird.bind(this)
+    this.HideBird = this.HideBird.bind(this)
   }
   componentDidMount(){
     this.getData()
@@ -42,8 +43,12 @@ export default class Birds extends Component {
   }
 
   getBird(bird) {
-    console.log(`Bird: `, bird);
-    this.setState({bird: bird})
+    // console.log(`Bird: `, bird);
+    this.setState({bird: bird, show: true})
+  }
+
+  HideBird(bird) {
+    this.setState({ show: false });
   }
 
   handleAddBird(bird) {
@@ -72,15 +77,16 @@ export default class Birds extends Component {
     this.setState = {
     }
   }
-  handleShowBird() {
-    console.log('show birds')
-    this.setState = {
-      show: !this.state.show
-    }
-  }
+  // handleShowBird() {
+  //   console.log('show birds')
+  //   this.setState = {
+  //     show: true
+  //   }
+  // }
+
+
 
   async handleLikesBird(bird, i) {
-    console.log("WTF?");
     const newLikes = bird.likes + 1
     try {
       let response = await fetch(`${baseURL}/${bird._id}` , {
@@ -102,9 +108,8 @@ export default class Birds extends Component {
     }
   }
 
-
   render() {
-    console.log(this.state);
+    // console.log(`Show; `, this.state.show);
     return(
       <div>
         <h4 className="">Birds</h4>
@@ -140,10 +145,11 @@ export default class Birds extends Component {
 
             })
         }
-        {this.state.bird && this.state.show
+        {this.state.show && this.state.bird
           ? <ShowBird
-            bird={this.state.bird }
-            showBird={this.handleShowBird}
+            bird={this.state.bird}
+            HideBird={this.HideBird}
+            show={this.state.show}
             />
           : null
         }
